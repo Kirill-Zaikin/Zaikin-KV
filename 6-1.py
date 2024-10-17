@@ -81,10 +81,17 @@ try:
 
         # перевод значений напряжения в строку для записи в файл
         data_exp_str = [str(item) for item in data_exp]
-
+        data_f_str = str(len(data_exp_str)/(stop_time - start_time))
+        data_t_str = str((stop_time - start_time)/len(data_exp_str))
         # запись данный во внешний файл
         with open('data_file','w') as outfile:
             outfile.write("\n".join(data_exp_str))
+            outfile.write("\n")
+            outfile.write("шаг квантования:")
+            outfile.write(data_t_str)
+            outfile.write("\n")
+            outfile.write("часота дискретизации:")
+            outfile.write(data_f_str)
 
         # вывод общего времени эксперемента
         print("время эксперемента = ",stop_time - start_time,"сек")
